@@ -20,7 +20,7 @@ public class Identifier implements Validator {
     @Override
     public List<String> lexicalValidator(String line) {
 
-        Pattern rxPattern = Pattern.compile("(.|\\n)*?([a-z])([a-z]|[0-9])*");
+        Pattern rxPattern = Pattern.compile("[A-Za-z]([[A-Za-z]0-9])*");
         Matcher matcher = rxPattern.matcher(line.trim());
         var resultado = "";
 
