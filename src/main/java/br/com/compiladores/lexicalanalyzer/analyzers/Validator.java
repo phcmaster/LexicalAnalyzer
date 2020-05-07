@@ -5,4 +5,7 @@ import java.util.List;
 public interface Validator {
 
      List<String> lexicalValidator(String line);
+
+
+     boolean lexicalValidatorNew(String line);
 }

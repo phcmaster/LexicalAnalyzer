@@ -39,5 +39,10 @@ public class Literal implements Validator {
         return literalList;
     }
 
+    @Override
+    public boolean lexicalValidatorNew(String line) {
+        return true;
+    }
+
 
 }

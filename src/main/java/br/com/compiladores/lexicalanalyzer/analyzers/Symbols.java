@@ -38,4 +38,9 @@ public class Symbols implements Validator {
         }
         return symbolsList;
     }
+
+    @Override
+    public boolean lexicalValidatorNew(String line) {
+        return true;
+    }
 }

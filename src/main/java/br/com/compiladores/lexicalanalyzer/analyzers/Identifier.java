@@ -31,10 +31,20 @@ public class Identifier implements Validator {
 
         List<String> response = resultado.lines().collect(Collectors.toList());
 
-        if(response.stream().findAny().isPresent()){
+        if (response.stream().findAny().isPresent()) {
             identifierList.addAll(response);
 
         }
         return identifierList;
+    }
+
+    @Override
+    public boolean lexicalValidatorNew(String line) {
+
+        Pattern rxPattern = Pattern.compile("[A-Za-z]([[A-Za-z]0-9])*");
+        Matcher matcher = rxPattern.matcher(line.trim());
+
+
+        return true;
     }
 }

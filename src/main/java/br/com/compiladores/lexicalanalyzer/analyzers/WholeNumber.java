@@ -38,4 +38,9 @@ public class WholeNumber implements Validator {
         return numberList;
 
     }
+
+    @Override
+    public boolean lexicalValidatorNew(String line) {
+        return true;
+    }
 }

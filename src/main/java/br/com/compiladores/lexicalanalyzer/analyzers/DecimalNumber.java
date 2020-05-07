@@ -35,4 +35,9 @@ public class DecimalNumber implements Validator {
         }
         return decimalList;
     }
+
+    @Override
+    public boolean lexicalValidatorNew(String line) {
+        return false;
+    }
 }
