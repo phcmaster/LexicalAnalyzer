@@ -21,6 +21,36 @@ public class Symbols implements Validator {
     public List<String> lexicalValidator(String line) {
 
 
+//        List<String> symbols = new ArrayList<String>();
+//        symbols.add("{");
+//        symbols.add("}");
+//        symbols.add(";");
+//        symbols.add("=");
+//        symbols.add("(");
+//        symbols.add(")");
+//        symbols.add("/");
+//        symbols.add("*");
+//        symbols.add("+");
+//        symbols.add("-");
+//        symbols.add("<");
+//        symbols.add("<=");
+//        symbols.add(">");
+//        symbols.add(">=");
+//        symbols.add("==");
+//        symbols.add("!=");
+//        symbols.add("&&");
+//        symbols.add("||");
+//
+//        int i = 0;
+//        while (i > line.length()) {
+//            if (line.contains(symbols)) {
+//                List<String> response = line.lines().collect(Collectors.toList());
+//                symbolsList.addAll(response);
+//            }
+//        }
+//        return symbolsList;
+//    }
+
         Pattern rxPattern = Pattern.compile("");
         Matcher matcher = rxPattern.matcher(line.trim());
         var resultado = "";
@@ -38,4 +68,5 @@ public class Symbols implements Validator {
         }
         return symbolsList;
     }
+
 }
