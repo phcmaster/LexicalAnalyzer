@@ -1,9 +1,6 @@
 package br.com.compiladores.lexicalanalyzer.FIleIO;
 
-import br.com.compiladores.lexicalanalyzer.analyzers.DecimalNumber;
-import br.com.compiladores.lexicalanalyzer.analyzers.Identifier;
-import br.com.compiladores.lexicalanalyzer.analyzers.Literal;
-import br.com.compiladores.lexicalanalyzer.analyzers.WholeNumber;
+import br.com.compiladores.lexicalanalyzer.analyzers.*;
 
 import java.io.*;
 import java.util.List;
@@ -16,6 +13,8 @@ public class FIleManager {
         WholeNumber number = new WholeNumber();
         DecimalNumber decimalNumber = new DecimalNumber();
         Identifier identifier = new Identifier();
+        Symbols symbol = new Symbols();
+
 
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
 
@@ -27,6 +26,8 @@ public class FIleManager {
                 number.lexicalValidator(line);
                 decimalNumber.lexicalValidator(line);
                 identifier.lexicalValidator(line);
+                symbol.lexicalValidator(line);
+
 
             } else
                 break;
@@ -34,24 +35,24 @@ public class FIleManager {
         }
         buffRead.close();
         printText(literal.getLiteralList(), number.getNumberList(),
-                decimalNumber.getDecimalList(), identifier.getIdentifierList());
+                decimalNumber.getDecimalList(), identifier.getIdentifierList(), symbol.getSymbolsList());
     }
 
 
-    private void printText(List<String> literais, List<String> numbers, List<String> decimal, List<String> identifier) {
+    private void printText(List<String> literais, List<String> numbers, List<String> decimal, List<String> identifier, List<String> symbol) {
         System.out.println("Literais: \n");
         literais.forEach(System.out::println);
 
-        System.out.println("\n Valor inteiro: \n");
+        System.out.println("\n Valores inteiros: \n");
         numbers.forEach(System.out::println);
 
-        System.out.println("\n Valor decimal: \n");
+        System.out.println("\n Valores decimais: \n");
         decimal.forEach(System.out::println);
 
-//        System.out.println("\n Simbolos: \n");
-//        decimal.forEach(System.out::println);
+        System.out.println("\n Simbolos: \n");
+        symbol.forEach(System.out::println);
 
-        System.out.println("\n Identificador: \n");
+        System.out.println("\n Identificadores: \n");
         identifier.forEach(System.out::println);
 
 
