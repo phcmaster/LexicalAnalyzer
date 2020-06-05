@@ -5,10 +5,6 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -18,24 +14,25 @@ public class Symbols implements Validator {
 
 
     @Override
-    public List<String> lexicalValidator(String line) {
+    public boolean lexicalValidator(String line) {
 
+        boolean isSimbol = false;
 
-        Pattern rxPattern = Pattern.compile("");
-        Matcher matcher = rxPattern.matcher(line.trim());
-        var resultado = "";
+        for (int i = 0; i < line.length(); i++) {
 
-        while (matcher.find()) {
-            MatchResult res = matcher.toMatchResult();
-            resultado = res.group();
+            if (line.substring(i).equals("(")
+                    || line.substring(i).equals(")")
+                    || line.substring(i).equals("{")
+                    || line.substring(i).equals("}")
+                    || line.substring(i).equals(";")
+                    || line.substring(i).equals("=")
+                    || line.substring(i).equals("<")
+//                    || line.substring(i).equals(".")
+                    || line.substring(i).equals("/")) {
+                isSimbol = true;
+
+            }
         }
-
-        List<String> response = resultado.lines().collect(Collectors.toList());
-
-        if(response.stream().findAny().isPresent()){
-            symbolsList.addAll(response);
-
-        }
-        return symbolsList;
+        return isSimbol;
     }
 }

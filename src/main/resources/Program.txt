@@ -1,24 +1,80 @@
-programa aprovacao {
-	real nota;
-	inteiro frequencia;
-	real frequenciaPercentual;
-
-	inteiro totalAulas = 20;
-	escreva("Entre com a nota: ");
-	leia(nota);
-	escreva("Entre com a frequencia: ");
-	leia(frequencia);
-
-	frequenciaPercentual = frequencia / totalAulas;
-
-	se frequenciaPercentual < 0.75 entao {
-		escreva("Reprovado por frequencia");
-	} senao {
-		se nota < 5 entao {
-			escreva("Reprovado por nota.");
-		} senao {
-			escreva("Aprovado");
-		}
-
-	}
+programa
+aprovacao
+{
+real
+nota
+;
+inteiro
+frequencia
+;
+real
+frequenciaPercentual
+;
+inteiro
+totalAulas
+=
+20
+;
+escreva
+(
+"Entre com a nota: "
+)
+;
+leia
+(
+nota
+)
+;
+escreva
+(
+"Entre com a frequencia: "
+)
+;
+leia
+(
+frequencia
+)
+;
+frequenciaPercentual
+=
+frequencia
+/
+totalAulas
+;
+se
+frequenciaPercentual
+<
+0.75
+entao
+{
+escreva
+(
+"Reprovado por frequencia"
+)
+;
+}
+senao
+{
+se
+nota
+<
+5
+entao
+{
+escreva
+(
+"Reprovado por nota."
+)
+;
+}
+senao
+{
+escreva
+(
+"Aprovado"
+)
+;
+}
+}
+}
 }

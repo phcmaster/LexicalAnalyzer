@@ -2,18 +2,13 @@ package br.com.compiladores.lexicalanalyzer.FIleIO;
 
 import br.com.compiladores.lexicalanalyzer.analyzers.*;
 
-import java.io.*;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class FIleManager {
 
     public void reader(String path) throws IOException {
-
-        Literal literal = new Literal();
-        WholeNumber number = new WholeNumber();
-        DecimalNumber decimalNumber = new DecimalNumber();
-        Identifier identifier = new Identifier();
-        Symbols symbol = new Symbols();
 
 
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
@@ -22,40 +17,42 @@ public class FIleManager {
 
         while (true) {
             if (line != null) {
-                literal.lexicalValidator(line);
-                number.lexicalValidator(line);
-                decimalNumber.lexicalValidator(line);
-                identifier.lexicalValidator(line);
-                symbol.lexicalValidator(line);
-
+                System.out.println("\n" +line + " " + printText(line));
 
             } else
                 break;
             line = buffRead.readLine();
+
         }
         buffRead.close();
-        printText(literal.getLiteralList(), number.getNumberList(),
-                decimalNumber.getDecimalList(), identifier.getIdentifierList(), symbol.getSymbolsList());
-    }
-
-
-    private void printText(List<String> literais, List<String> numbers, List<String> decimal, List<String> identifier, List<String> symbol) {
-        System.out.println("Literais: \n");
-        literais.forEach(System.out::println);
-
-        System.out.println("\n Valores inteiros: \n");
-        numbers.forEach(System.out::println);
-
-        System.out.println("\n Valores decimais: \n");
-        decimal.forEach(System.out::println);
-
-        System.out.println("\n Simbolos: \n");
-        symbol.forEach(System.out::println);
-
-        System.out.println("\n Identificadores: \n");
-        identifier.forEach(System.out::println);
-
 
     }
+
+
+    private String printText(String line) {
+
+        Literal literal = new Literal();
+        WholeNumber number = new WholeNumber();
+        DecimalNumber decimalNumber = new DecimalNumber();
+        Identifier identifier = new Identifier();
+        Symbols symbol = new Symbols();
+
+        if (literal.lexicalValidator(line)) {
+            return "LITERAL";
+        } else if (identifier.lexicalValidator(line)) {
+            return "IDENTIFIER";
+        } else if (number.lexicalValidator(line)) {
+            return "NUMBER";
+        } else if (decimalNumber.lexicalValidator(line)) {
+            return "DECIMAL";
+        } else if (symbol.lexicalValidator(line)) {
+            return "    SYMBOL";
+        } else {
+            return "NOT FOUND";
+        }
+
+
+    }
+
 
 }
